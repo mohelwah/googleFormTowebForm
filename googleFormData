@@ -1,0 +1,19 @@
+from google.oauth2.credentials import Credentials
+from googleapiclient.discovery import build
+
+# Set the ID of your Google Form and the name of the associated Google Sheet
+form_id = 'your_form_id'
+sheet_name = 'Form Responses 1'
+
+# Set up the Sheets API client using your credentials
+creds = Credentials.from_authorized_user_file('token.json', ['https://www.googleapis.com/auth/spreadsheets'])
+service = build('sheets', 'v4', credentials=creds)
+
+# Get the values from the specified sheet
+sheet = service.spreadsheets()
+result = sheet.values().get(spreadsheetId=form_id, range=sheet_name).execute()
+values = result.get('values', [])
+
+# Print out the form responses
+for row in values:
+    print(row)
