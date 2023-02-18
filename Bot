@@ -1,0 +1,29 @@
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
+
+# Load the Chrome browser
+driver = webdriver.Chrome()
+
+# Navigate to the 3rd party website's form
+driver.get("https://example.com/form")
+
+# Wait for the form to load
+time.sleep(2)
+
+# Fill out the form fields with data from the Google Form/JotForm
+input1 = driver.find_element_by_name("field1")
+input1.send_keys("Data from question 1")
+
+input2 = driver.find_element_by_name("field2")
+input2.send_keys("Data from question 2")
+
+# Submit the form
+submit_button = driver.find_element_by_name("submit")
+submit_button.click()
+
+# Wait for the submission to complete
+time.sleep(2)
+
+# Close the browser
+driver.quit()
