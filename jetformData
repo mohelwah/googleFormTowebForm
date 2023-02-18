@@ -1,0 +1,15 @@
+import jotform
+
+# Set up the JotForm API client using your API key
+api_key = 'your_api_key'
+jotform_client = jotform.JotformAPIClient(api_key)
+
+# Set the ID of your JotForm
+form_id = 'your_form_id'
+
+# Get the form submissions
+submissions = jotform_client.get_form_submissions(form_id)
+
+# Print out the form responses
+for submission in submissions:
+    print(submission['answers'])
